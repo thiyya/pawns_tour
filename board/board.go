@@ -39,11 +39,12 @@ func New() *Board {
 	for i := range board {
 		board[i] = make([]Point, global.BOARD_SIZE)
 	}
-	return &Board{board, 0}
+	return &Board{board, 1}
 }
 
 func (b *Board) Solve(move int, x int, y int) bool {
-	//b.PrintBoard()
+	// to see all moves :
+	// b.PrintBoard()
 	if move == global.BOARD_SIZE*global.BOARD_SIZE+1 {
 		b.SetDirection(x, y, "*")
 		return true

@@ -9,7 +9,7 @@ import (
 func TestNewBoard(t *testing.T) {
 	Convey("New Board", t, func(c C) {
 		board := New()
-		c.So(board.tryCounter, ShouldEqual, 0)
+		c.So(board.tryCounter, ShouldEqual, 1)
 		c.So(board.status[0][0].Visited, ShouldEqual, false)
 		c.So(board.status[0][0].MoveCounter, ShouldEqual, 0)
 	})
@@ -43,19 +43,6 @@ func TestNewBoard(t *testing.T) {
 		c.So(res, ShouldEqual, true)
 	})
 
-	Convey("IsValidMove", t, func(c C) {
-		board := New()
-		board.Visit(3, 5, 11)
-		res := board.IsValidMove(3, 5)
-		c.So(res, ShouldEqual, false)
-		res = board.IsValidMove(-1, 5)
-		c.So(res, ShouldEqual, false)
-		res = board.IsValidMove(3, -5)
-		c.So(res, ShouldEqual, false)
-		res = board.IsValidMove(3, 6)
-		c.So(res, ShouldEqual, true)
-	})
-
 	Convey("Clear", t, func(c C) {
 		board := New()
 		board.Visit(3, 5, 11)
@@ -67,7 +54,7 @@ func TestNewBoard(t *testing.T) {
 		c.So(res, ShouldEqual, true)
 	})
 
-	Convey("Clear", t, func(c C) {
+	Convey("Set Direction", t, func(c C) {
 		board := New()
 		board.SetDirection(3, 5, "ok")
 		c.So(board.status[3][5].NextDirection, ShouldEqual, "ok")
